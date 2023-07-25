@@ -8,15 +8,13 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import SignupSerializer
 
 
-
 class SignupView(CreateAPIView):
     permission_classes = []
     serializer_class = SignupSerializer
 
 
 class BlacklistRefreshTokenView(APIView):
-
     def post(self, request):
-        token = RefreshToken(request.data.get('refresh'))
+        token = RefreshToken(request.data.get("refresh"))
         token.blacklist()
         return Response(status=status.HTTP_204_NO_CONTENT)
