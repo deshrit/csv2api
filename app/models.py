@@ -3,6 +3,7 @@ from django.db import models
 
 # Create your models here.
 class Animal(models.Model):
+    unique_id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=254)
     scientific_name = models.CharField(max_length=254)
     owner_name = models.CharField(max_length=150)
