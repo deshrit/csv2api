@@ -5,6 +5,7 @@ from rest_framework import status
 
 from .models import Animal
 from .serializers import AnimalSerializer
+from .throttling import CSVRateThrottle
 
 from django import db
 
@@ -17,6 +18,8 @@ class AnimalViews(ModelViewSet):
 
 
 class CSVAPIView(APIView):
+    throttle_classes = [CSVRateThrottle]
+
     def post(self, request):
         file = request.FILES["file"]
         objs = []
