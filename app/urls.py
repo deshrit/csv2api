@@ -10,6 +10,6 @@ router.register("animals", AnimalViews)
 
 
 urlpatterns = [
-    path("api/", include(router.urls)),
-    path("api/csv/", CSVAPIView.as_view(), name="csv"),
+    path("", include(router.urls)),
+    path("csv/", CSVAPIView.as_view(), name="csv"),
 ]
