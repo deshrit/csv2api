@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt.token_blacklist",
     "authentication",
     "app",
+    "drf_spectacular",
 ]
 
 MIDDLEWARE = [
@@ -137,6 +138,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Application
 AUTH_USER_MODEL = "authentication.CustomUser"
 REST_FRAMEWORK = {
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+    ],
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_simplejwt.authentication.JWTAuthentication",
         "rest_framework.authentication.SessionAuthentication",
@@ -151,6 +155,7 @@ REST_FRAMEWORK = {
         "rest_framework.throttling.UserRateThrottle",
     ],
     "DEFAULT_THROTTLE_RATES": {"anon": "20/day", "user": "50/day", "csv": "2/day"},
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": datetime.timedelta(minutes=5),
@@ -158,4 +163,9 @@ SIMPLE_JWT = {
     "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
     "UPDATE_LAST_LOGIN": True,
+}
+SPECTACULAR_SETTINGS = {
+    "TITLE": "CSV2API",
+    "DESCRIPTION": "An example of creating secure, authenticated RESTful endpoints to upload data from csv to database and access it.",
+    "VERSION": "0.1.0",
 }
